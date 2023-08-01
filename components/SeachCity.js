@@ -68,7 +68,7 @@ export const SeachCity = () => {
           <div>
             <div>
               <Image
-                src={`/../public/Cloud-background.png`}
+                src={`/Cloud-background.png`}
                 className="nuvens"
                 width={450}
                 height={350}
@@ -76,7 +76,7 @@ export const SeachCity = () => {
               />
               <div>
                 <Image
-                  src={`/../public/${dados.weather[0].main}.png`}
+                  src={`/${dados.weather[0].main}.png`}
                   className="tempo"
                   width={200}
                   height={200}

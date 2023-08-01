@@ -27,7 +27,7 @@ export const Cards = ({ infos, funcao }) => {
                   <div id='cConteudo'>
                     <p>{funcao(el.dt_txt)}</p>
                     <Image
-                      src={`/../public/${el.weather[0].main}.png`}
+                      src={`/${el.weather[0].main}.png`}
                       width={50}
                       height={50}
                       alt=""
