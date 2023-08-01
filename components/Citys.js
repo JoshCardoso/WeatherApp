@@ -1,30 +1,45 @@
-'use client'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSearch } from '@fortawesome/free-solid-svg-icons'
+"use client";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import {useState} from 'react'
 
-export const Citys = () => {
+export const Citys = ({ cidade,trocas }) => {
+ const [change, setChange] = useState();
+
+function changeCity(){
+  cidade(change),
+  trocas(false)
+}
+
+
   return (
     <div className="buscaBlo">
       <div className="fechar">
-        <button>X</button>
+        <button onClick={()=> trocas(false)}>X</button>
       </div>
       <div className="buscainput">
         <div>
-        <FontAwesomeIcon className='lupa' icon={faSearch} />
-        <input type="text" placeholder="search location"/>
+          <FontAwesomeIcon className="lupa" icon={faSearch} />
+          <input onChange={(e)=> setChange(e.target.value)} type="text" placeholder="search location" />
         </div>
-        <button>Seach</button>
+        <button onClick={changeCity}>Seach</button>
       </div>
       <div>
-        <div className="block active">
-          <p>London</p>
-          <p>&gt;</p>
+        <div className="block">
+          <p onClick={()=> {cidade('london')
+          trocas(false)
+        }}>London</p>
+          
         </div>
         <div className="block">
-          <p>Barcelona</p>
+          <p onClick={()=> {cidade('barcelona')
+        trocas(false)
+        }}>Barcelona</p>
         </div>
         <div className="block">
-          <p>Long Beach</p>
+          <p onClick={()=> {cidade('long beach')
+        trocas(false)
+        }}>Long Beach</p>
         </div>
       </div>
     </div>

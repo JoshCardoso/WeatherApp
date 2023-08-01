@@ -44,14 +44,17 @@ export const Higthlights = ({ infos }) => {
                 <p>%</p>
               </div>
               <div id="porcentagem">
-                <div>
+                <div id="porcentagemMedida">
                   <p>0</p>
                   <p>50</p>
                   <p>100</p>
                 </div>
-                <div className="fBranco">
-                  <div style={{'width':` ${infos.main.humidity}%`}} className="fAmarelo">
-                  </div>
+                <div style={{background: `linear-gradient(to right, #FFEC65 0% ${
+               infos.main.humidity
+              }% , #E7E7EB ${ infos.main.humidity}% 100%)`,}} id="porcentagemBarra">
+                </div>
+                <div className="porcentagemSimbolo">
+                  <p>%</p>
                 </div>
               </div>
             </div>

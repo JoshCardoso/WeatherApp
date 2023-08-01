@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { Cards } from "./Cards";
 import { Higthlights } from "./Higthlights";
+import { Citys } from "./Citys";
 
 const key = "767b7eb5a8a7aa692e7671f4892dc803";
 
@@ -17,6 +18,7 @@ export const SeachCity = () => {
   const [dados2, setDados2] = useState();
   const [city, setCity] = useState("barretos");
   const [tempo, setTempo] = useState("Hail");
+  const [troca, setTroca] = useState()
 
   useEffect(() => {
     const promesa = fetch(
@@ -50,10 +52,13 @@ export const SeachCity = () => {
 
   return (
     <div className="bgFundo">
+      {troca &&(<div className="backSeach">
+        <Citys cidade={ setCity } trocas={setTroca}/>
+      </div>)}
       <div className="back">
         <div className="barra">
           <div className="buscaLoc">
-            <button className="bSeach">Seach for places</button>
+            <button onClick={()=> setTroca(true)} className="bSeach">Seach for places</button>
           </div>
           <button className="imgLoc bSeach">
             <FontAwesomeIcon icon={faLocation} />

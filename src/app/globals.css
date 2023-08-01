@@ -17,9 +17,18 @@ justify-content: end;
 }
 
 .back {
+  
   width: 30vw;
   height: 100vh;
   background-color: #1e213a;
+}
+
+.backSeach {
+  width: 30vw;
+  height: 100vh;
+  background-color: #1e213a;
+  position: absolute;
+  z-index: 50;
 }
 
 .bgFundo{
@@ -54,7 +63,6 @@ justify-content: end;
 }
 
 .buscaBlo {
-  display: none;
   margin: 15px;
 }
 
@@ -65,6 +73,10 @@ justify-content: end;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
+}
+
+.block  p{
+  margin: 0px 10px;
 }
 
 .active {
@@ -78,6 +90,48 @@ justify-content: end;
   font-weight: 400;
   font-size: 17px;
   height: 50px;
+}
+
+.buscainput{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 100px;
+}
+
+.buscainput div{
+  border:1px solid gray;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 300px;
+  height: 50px;
+}
+
+.buscainput input{
+  background-color: transparent;
+  border: none;
+  color: white;
+  font-size: 20px;
+}
+
+.buscainput svg{
+  color: #a09fb1;
+}
+
+.buscainput button{
+  width: 100px;
+  height: 50px;
+  background-color: rgb(68, 53, 202);
+  color:white;
+  font-size: 20px;
+  border:none;
+}
+
+.buscainput button:active{
+  background-color: white;
+  color: rgb(68, 53, 202);
 }
 
 .buscaLoc {
@@ -277,35 +331,60 @@ h2 {
   color: white;
 }
 
-.fBranco{
-  background-color: #e7e7eb;
-  width: 15vw;
+.fBranc{
+  
+  height: 100%;
+}
+
+#fAmarelo{
+  background-color: #fffd83;
   height: 1px;
 }
 
-.fAmarelo{
-  background-color: #fffd83;
-  width: 100%;
-  position: relative;
-  top:6.9px;
+#porcentagem {
+  display: block;
+  width: 70%;
+  height: 30px;
 }
 
-#porcentagem{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-#porcentagem div{
+#porcentagemMedida {
   justify-content: space-between;
-  width: 15vw;
+  font-size: 10px;
 }
 
-#porcentagem p{
+#porcentagemBarra {
+  width:100%;
+  height: 2px;
+  background-color: #e7e7eb;
+  border-radius: 25px;
+  
+}
+
+.porcentagemSimbolo{
+  justify-content:end
+}
+
+.porcentagemSimbolo p{
   font-size: 10px;
 }
 
 @media screen and (max-width: 430px) {
+  .backSeach {
+  
+    width: 100vw;
+    height: 100vh;
+    background-color: #1e213a;
+    position: fixed;
+    z-index: 50;
+  }
+
+  #porcentagemBarra {
+    width:100%;
+    height: 1px;
+    background-color: #e7e7eb;
+    border-radius: 25px;
+    
+  }
 
   .back {
     background-color: #1e213a;
@@ -449,7 +528,6 @@ h2 {
     display: flex;
     align-items: flex-end;
     font-size: 34px;
-    padding-bottom: 8%;
   }
 
   .tituloHight {
