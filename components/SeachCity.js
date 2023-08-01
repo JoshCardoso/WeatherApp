@@ -1,6 +1,10 @@
 "use client";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faLocation, faLocationPin } from "@fortawesome/free-solid-svg-icons";
+import {
+  faLocation,
+  faLocationDot,
+  faLocationPin,
+} from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { Cards } from "./Cards";
@@ -10,30 +14,49 @@ const key = "767b7eb5a8a7aa692e7671f4892dc803";
 
 export const SeachCity = () => {
   const [dados, setDados] = useState();
-  const [city, setCity] = useState("praia grande");
+  const [dados2, setDados2] = useState();
+  const [city, setCity] = useState("barretos");
   const [tempo, setTempo] = useState("Hail");
-  const promesa2 = fetch(``);
 
   useEffect(() => {
     const promesa = fetch(
-      `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${key}`
+      `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${key}&units=metric`
     );
-    Promise.all([promesa]).then(async (valores) => {
+    const promesa2 = fetch(
+      `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${key}&units=metric`
+    );
+
+    Promise.all([promesa, promesa2]).then(async (valores) => {
       const dado = await valores[0].json();
+      const dado2 = await valores[1].json();
       setDados(dado);
-      console.log(dados.weather[0].main);
+      setDados2(dado2);
     });
   }, [city]);
 
+  const stringData = (data) => {
+    const str = new Date(data)
+      .toLocaleDateString("en-us", {
+        weekday: "long",
+        day: "numeric",
+        month: "long",
+      })
+      .replace(",", "")
+      .split(" ");
+    const weekday = str[0].slice(0, 3);
+    const month = str[1].slice(0, 3);
+    return `${weekday}, ${str[2]} ${month}`;
+  };
+
   return (
-    <div>
+    <div className="bgFundo">
       <div className="back">
         <div className="barra">
           <div className="buscaLoc">
             <button className="bSeach">Seach for places</button>
           </div>
           <button className="imgLoc bSeach">
-            <FontAwesomeIcon className="location" icon={faLocation} />
+            <FontAwesomeIcon icon={faLocation} />
           </button>
         </div>
         {dados && (
@@ -58,20 +81,30 @@ export const SeachCity = () => {
             </div>
             <div className="dadosLateral">
               <div className="infoCity">
-                <h1>15°C</h1>
+                <h1>{dados.main.temp}</h1>
+                <h2>°C</h2>
               </div>
-              <h2 className="infoCity">today . fri,5 jun</h2>
-              <div className="infoLoc">data</div>
+              <h3>{dados.weather[0].main}</h3>
+              <div>
+                <p className="infoCity">Today . {stringData(new Date())}</p>
+              </div>
               <div className="infoLoc">
-                <FontAwesomeIcon className="location" icon={faLocationPin} />
-                {dados.name}
+                <p>
+                  <FontAwesomeIcon
+                    className="locationcity"
+                    icon={faLocationDot}
+                  />
+                  {dados.name}
+                </p>
               </div>
             </div>
           </div>
         )}
       </div>
-      <Cards />
-      <Higthlights />
+      <div>
+        <Cards infos={dados2} funcao={stringData} />
+        <Higthlights infos={dados} />
+      </div>
     </div>
   );
 };
