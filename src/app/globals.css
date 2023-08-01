@@ -370,6 +370,10 @@ h2 {
 
 @media screen and (max-width: 1000px) {
   .backSeach {
+
+    body{
+      max-height: 750px;
+    }
   
     width: 100vw;
     height: 100vh;
@@ -481,6 +485,7 @@ h2 {
   .card div {
     display: grid;
     grid-template-columns: 1fr 1fr;
+    place-content: center;
     gap: 20px;
   }
 
